@@ -30,39 +30,25 @@ function createServlet(Class) {
 
 }
 
-/**
- * An Http server implementation that uses a map of methods to decide
- * action routing.
- *
- * @param {Object} Map of method => Handler function
- */
+
 function HttpServer(handlers) {
     
 
     this.handlers = handlers;
     this.server = http.createServer(this.handleRequest_.bind(this));
     
-   
-
-
 }
 
-HttpServer.prototype.start = function (port,host) {
-    
-    //process.env.OPENSHIFT_NODEJS_IP;
-    //process.env.OPENSHIFT_NODEJS_PORT;
+HttpServer.prototype.start = function (port) {
 
-    console.log(port);
-    console.log(host);
-    this.host = process.env.OPENSHIFT_NODEJS_IP;
     this.port = process.env.OPENSHIFT_NODEJS_PORT;
-    this.server.listen(port, host);
+    this.server.listen(port, process.env.OPENSHIFT_NODEJS_IP);
 
 };
 
 HttpServer.prototype.parseUrl_ = function (urlString) {
     var parsed = url.parse(urlString);
-    parsed.pathname = url.resolve('/', parsed.pathname);
+    parsed.pathname = url.resolve('./app/', parsed.pathname);
     return url.parse(url.format(parsed), true);
 };
 
@@ -82,9 +68,7 @@ HttpServer.prototype.handleRequest_ = function (req, res) {
     }
 };
 
-/**
- * Handles static content.
- */
+
 function StaticServlet() {
 }
 
@@ -104,7 +88,7 @@ StaticServlet.MimeMap = {
 
 StaticServlet.prototype.handleRequest = function (req, res) {
     var self = this;
-    var path = ('./' + req.url.pathname).replace('//', '/').replace(/%(..)/g, function (match, hex) {
+    var path = ('./app/' + req.url.pathname).replace('//', '/').replace(/%(..)/g, function (match, hex) {
         return String.fromCharCode(parseInt(hex, 16));
     });
     var parts = path.split('/');
@@ -124,7 +108,7 @@ StaticServlet.prototype.handleRequest = function (req, res) {
 
 StaticServlet.prototype.findAndSendTarget = function(req, path, res, self) {
     fs.stat(path, function (err, stat) {
-        if (err && path.indexOf('app/') >= 0)
+        if (err && path.indexOf('/') >= 0)
             return self.sendMissing_(req, res, path);
         else if (err) {
             if (path.indexOf('.json') == -1) {
@@ -227,7 +211,7 @@ StaticServlet.prototype.sendRedirect_ = function (req, res, redirectUrl) {
 
 StaticServlet.prototype.sendDefault_ = function (req, res) {
     var self = this;
-    var path = './index.html'
+    var path = 'app/index.html'
 
     var file = fs.createReadStream(path);
     res.writeHead(200, {
@@ -406,14 +390,13 @@ fs.mkdirSyncRecursive = function(dirPath) {
     try{
         fs.mkdirSync(dirPath)
     } catch(e) {
-        //Create all the parents recursively
+        
         fs.mkdirSyncRecursive(path.dirname(dirPath));
-        //And then the directory
+     
         fs.mkdirSyncRecursive(dirPath);
 
     }
 
 };
 
-// Must be last,
 main(process.argv);
