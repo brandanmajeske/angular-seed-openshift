@@ -1,6 +1,6 @@
 {
   "name": "angularjs-seed-openshift",
-  "description": "A Quickstart AngularJS project for OpenShift",
+  "description": "A quickstart AngularJS project for OpenShift",
   "repository": "https://github.com/brandanmajeske/angular-seed-openshift",
   "devDependencies": {
     "phantomjs" : "~1.9",

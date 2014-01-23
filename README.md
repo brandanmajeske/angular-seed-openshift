@@ -1,4 +1,4 @@
-#This is the [OpenShift](https://openshift.redhat.com) quickstart version of Angular Seed
+#This is a quickstart version of Angular Seed for [OpenShift](https://openshift.redhat.com) 
 
 Required: 
   * an openshift account
