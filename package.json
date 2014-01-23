@@ -1,12 +1,14 @@
 {
-  "name": "angularjs-seed",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "name": "angularjs-seed-quickstart",
+  "description": "A Quickstart AngularJS project for OpenShift",
+  "repository": "https://github.com/brandanmajeske/angular-seed-openshift",
   "devDependencies": {
     "phantomjs" : "~1.9",
     "karma" : "~0.10",
     "karma-junit-reporter" : "~0.1",
     "karma-jasmine" : "~0.1",
-    "karma-ng-scenario" : "~0.1"
-  }
+    "karma-ng-scenario" : "~0.1",
+    "express": "*"
+  },
+  "main": "/scipts/server.js"
 }
