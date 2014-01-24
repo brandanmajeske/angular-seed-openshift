@@ -5,9 +5,8 @@ Required:
   * a nodejs gear
 
 
----
 The following is the original Angular seed README
---- 
+---
 
 # angular-seed — the seed for AngularJS apps
 
