@@ -39,7 +39,7 @@ Clone the angular-seed repository and start hacking...
 You can pick one of these options:
 
 * serve this repository with your webserver
-* install node.js and run `scripts/web-server.js`
+* install node.js and run `scripts/server.js`
 
 Then navigate your browser to `http://localhost:<port>/app/index.html` to see the app running in
 your browser.
@@ -79,14 +79,14 @@ or remote browser.
 Angular ships with a baked-in end-to-end test runner that understands angular, your app and allows
 you to write your tests with jasmine-like BDD syntax.
 
-Requires a webserver, node.js + `./scripts/web-server.js` or your backend server that hosts the angular static files.
+Requires a webserver, node.js + `./scripts/server.js` or your backend server that hosts the angular static files.
 
 Check out the
 [end-to-end runner's documentation](http://docs.angularjs.org/guide/dev_guide.e2e-testing) for more
 info.
 
 * create your end-to-end tests in `test/e2e/scenarios.js`
-* serve your project directory with your http/backend server or node.js + `scripts/web-server.js`
+* serve your project directory with your http/backend server or node.js + `scripts/server.js`
 * to run do one of:
   * open `http://localhost:port/test/e2e/runner.html` in your browser
   * run the tests from console with [Karma](http://karma-runner.github.io) via
@@ -139,7 +139,7 @@ fetch the changes and merge them into your project with git.
       e2e-test.bat      --> runs end-to-end tests with Karma (windows)
       test.bat          --> autotests unit tests with Karma (windows)
       test.sh           --> autotests unit tests with Karma (*nix)
-      web-server.js     --> simple development webserver based on node.js
+      server.js         --> simple development webserver based on node.js
 
     test/               --> test source files and libraries
       e2e/              -->
